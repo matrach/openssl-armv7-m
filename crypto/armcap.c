@@ -46,7 +46,7 @@ uint32_t OPENSSL_rdtsc(void)
 {
     return 0;
 }
-#elif __ARM_MAX_ARCH__<7
+#elif __ARM_MAX_ARCH__<7 || defined(__NEWLIB__)
 void OPENSSL_cpuid_setup(void)
 {
 }
