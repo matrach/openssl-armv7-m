@@ -222,7 +222,7 @@ ChaCha20_ctr32:
 #endif
 	addeq	sp,sp,#4*3
 	beq	.Lno_data
-#if __ARM_MAX_ARCH__>=7
+#if __ARM_MAX_ARCH__>=7 && !defined(__ARM_ARCH_VAR_M__)
 	cmp	r2,#192			@ test len
 	bls	.Lshort
 	ldr	r4,[r14,#-32]
@@ -669,7 +669,7 @@ my ($a,$b,$c,$d,$t)=@_;
 }
 
 $code.=<<___;
-#if __ARM_MAX_ARCH__>=7
+#if __ARM_MAX_ARCH__>=7 && !defined(__ARM_ARCH_VAR_M__)
 .arch	armv7-a
 .fpu	neon
 

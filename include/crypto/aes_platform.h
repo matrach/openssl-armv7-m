@@ -90,7 +90,7 @@ void gcm_ghash_p8(u64 Xi[2],const u128 Htable[16],const u8 *inp, size_t len);
 
 #  if (defined(__arm__) || defined(__arm) || defined(__aarch64__))
 #   include "arm_arch.h"
-#   if __ARM_MAX_ARCH__>=7
+#   if __ARM_MAX_ARCH__>=7 && !defined(__ARM_ARCH_VAR_M__)
 #    if defined(BSAES_ASM)
 #     define BSAES_CAPABLE (OPENSSL_armcap_P & ARMV7_NEON)
 #    endif

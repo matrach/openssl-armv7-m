@@ -140,7 +140,7 @@ CRYPTO_memcmp:
 #endif
 .size	CRYPTO_memcmp,.-CRYPTO_memcmp
 
-#if __ARM_MAX_ARCH__>=7
+#if __ARM_MAX_ARCH__>=7 && !defined(__ARM_ARCH_VAR_M__)
 .arch	armv7-a
 .fpu	neon
 
@@ -221,7 +221,7 @@ OPENSSL_wipe_cpu:
 	eor	r2,r2,r2
 	eor	r3,r3,r3
 	eor	ip,ip,ip
-#if __ARM_MAX_ARCH__>=7
+#if __ARM_MAX_ARCH__>=7 && !defined(__ARM_ARCH_VAR_M__)
 	tst	r0,#1
 	beq	.Lwipe_done
 	veor	q0, q0, q0

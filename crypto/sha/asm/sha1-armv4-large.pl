@@ -203,7 +203,7 @@ $code=<<___;
 
 .align	5
 sha1_block_data_order:
-#if __ARM_MAX_ARCH__>=7
+#if __ARM_MAX_ARCH__>=7 && !defined(__ARM_ARCH_VAR_M__)
 .Lsha1_block:
 	ldr	r12,.LOPENSSL_armcap
 # if !defined(_WIN32)
@@ -314,7 +314,7 @@ $code.=<<___;
 .LK_20_39:	.word	0x6ed9eba1
 .LK_40_59:	.word	0x8f1bbcdc
 .LK_60_79:	.word	0xca62c1d6
-#if __ARM_MAX_ARCH__>=7
+#if __ARM_MAX_ARCH__>=7 && !defined(__ARM_ARCH_VAR_M__)
 .LOPENSSL_armcap:
 # ifdef	_WIN32
 .word	OPENSSL_armcap_P
@@ -533,7 +533,7 @@ sub Xloop()
 }
 
 $code.=<<___;
-#if __ARM_MAX_ARCH__>=7
+#if __ARM_MAX_ARCH__>=7 && !defined(__ARM_ARCH_VAR_M__)
 .arch	armv7-a
 .fpu	neon
 
@@ -625,7 +625,7 @@ my ($W0,$W1,$ABCD_SAVE)=map("q$_",(12..14));
 my $_byte = ($flavour =~ /win/ ? "DCB" : ".byte");
 
 $code.=<<___;
-#if __ARM_MAX_ARCH__>=7
+#if __ARM_MAX_ARCH__>=8
 
 # if defined(__thumb2__)
 #  define INST(a,b,c,d)	$_byte	c,d|0xf,a,b

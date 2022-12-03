@@ -370,7 +370,7 @@ void gcm_ghash_4bit_x86(u64 Xi[2], const u128 Htable[16], const u8 *inp,
 #  endif
 # elif defined(__arm__) || defined(__arm) || defined(__aarch64__)
 #  include "arm_arch.h"
-#  if __ARM_MAX_ARCH__>=7
+#  if __ARM_MAX_ARCH__>=7 && !defined(__ARM_ARCH_VAR_M__)
 #   define GHASH_ASM_ARM
 #   define PMULL_CAPABLE        (OPENSSL_armcap_P & ARMV8_PMULL)
 #   if defined(__arm__) || defined(__arm)

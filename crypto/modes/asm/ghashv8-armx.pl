@@ -75,7 +75,7 @@ my $_byte = ($flavour =~ /win/ ? "DCB" : ".byte");
 $code=<<___;
 #include "arm_arch.h"
 
-#if __ARM_MAX_ARCH__>=7
+#if __ARM_MAX_ARCH__>=8
 ___
 $code.=".arch	armv8-a+crypto\n.text\n"	if ($flavour =~ /64/);
 $code.=<<___					if ($flavour !~ /64/);

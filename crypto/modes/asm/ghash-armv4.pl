@@ -426,7 +426,7 @@ ___
 }
 
 $code.=<<___;
-#if __ARM_MAX_ARCH__>=7
+#if __ARM_MAX_ARCH__>=7 && !defined(__ARM_ARCH_VAR_M__)
 .arch	armv7-a
 .fpu	neon
 

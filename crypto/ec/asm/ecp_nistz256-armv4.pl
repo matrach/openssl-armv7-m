@@ -974,7 +974,7 @@ my @AxB=map("q$_",(8..15));
 my ($rptr,$aptr,$bptr,$toutptr)=map("r$_",(0..3));
 
 $code.=<<___;
-#if __ARM_ARCH__>=7
+#if __ARM_ARCH__>=7 && !defined(__ARM_ARCH_VAR_M__)
 .fpu	neon
 
 .globl	ecp_nistz256_mul_mont_neon

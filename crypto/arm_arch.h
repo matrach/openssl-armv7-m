@@ -52,6 +52,11 @@
 #  endif
 # endif
 
+# if defined(__ARM_ARCH_7M__) ||  defined(__ARM_ARCH_7EM__) || defined(__ARM_ARCH_6M__) || \
+        defined(__ARM_ARCH_8M__)
+#     define __ARM_ARCH_VAR_M__
+# endif
+
 # if !defined(__ARM_MAX_ARCH__)
 #  define __ARM_MAX_ARCH__ __ARM_ARCH__
 # endif

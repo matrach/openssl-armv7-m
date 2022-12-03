@@ -119,7 +119,7 @@ poly1305_init:
 	ldrb	r8,[$inp,#10]
 	and	r5,r5,r3
 
-#if	__ARM_MAX_ARCH__>=7
+#if	__ARM_MAX_ARCH__>=7 && !defined(__ARM_ARCH_VAR_M__)
 	tst	r12,#ARMV7_NEON		@ check for NEON
 # ifdef	__thumb2__
 	adr	r9,.Lpoly1305_blocks_neon
@@ -447,7 +447,7 @@ my ($T0,$T1,$MASK) = map("q$_",(15,4,0));
 my ($in2,$zeros,$tbl0,$tbl1) = map("r$_",(4..7));
 
 $code.=<<___;
-#if	__ARM_MAX_ARCH__>=7
+#if	__ARM_MAX_ARCH__>=7 && !defined(__ARM_ARCH_VAR_M__)
 .fpu	neon
 
 .type	poly1305_init_neon,%function
