@@ -172,6 +172,12 @@ poly1305_init:
 	bx	lr			@ interoperable with Thumb ISA:-)
 #endif
 .size	poly1305_init,.-poly1305_init
+.LOPENSSL_armcap:
+# ifdef	_WIN32
+.word	OPENSSL_armcap_P
+# else
+.word	OPENSSL_armcap_P-.Lpoly1305_init
+# endif
 ___
 {
 my ($h0,$h1,$h2,$h3,$h4,$r0,$r1,$r2,$r3)=map("r$_",(4..12));
@@ -1226,12 +1232,6 @@ poly1305_emit_neon:
 .align	5
 .Lzeros:
 .long	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-.LOPENSSL_armcap:
-# ifdef	_WIN32
-.word	OPENSSL_armcap_P
-# else
-.word	OPENSSL_armcap_P-.Lpoly1305_init
-# endif
 #endif
 ___
 }	}
